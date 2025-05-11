@@ -1,6 +1,4 @@
-// pages/apply.tsx
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export default function ApplyPage() {
     const [formData, setFormData] = useState({ name: '', email: '' });
@@ -9,11 +7,31 @@ export default function ApplyPage() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // TODO: Send form data to backend or API
-        console.log('Form submitted:', formData);
-    };
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+        const response = await fetch("http://localhost:3001/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name: "John Doe", email: "john@example.com" }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Form submitted successfully:", data);
+            alert("Application submitted successfully!");
+        } else {
+            console.error("Error submitting form:", response.statusText);
+            alert("Failed to submit the application. Please try again.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again.");
+    }
+};
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-500 to-teal-400">
