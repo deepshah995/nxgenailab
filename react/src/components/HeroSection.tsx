@@ -2,8 +2,15 @@ import React from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const HeroSection = () => {
+    const navigate = useNavigate(); // Initialize useNavigate
+
+    const handleRegisterClick = () => {
+        navigate('/apply'); // Navigate to the /register page
+    };
+
     return (
         <section className="py-8 md:py-24 bg-gradient-to-b">
             <div className="container mx-auto max-w-screen-lg flex flex-col md:flex-row items-center justify-between px-6 md:px-0">
@@ -27,9 +34,6 @@ const HeroSection = () => {
                         >
                             Future-Proofing the Next Generation with AI Learning
                         </span>
-                        {/* <p className="text-md md:text-lg text-gray-300 mt-4 max-w-md">
-                            Empowering teens to lead the AI-driven future with confidence, creativity, and curiosity.
-                        </p> */}
                     </motion.div>
                 </div>
 
@@ -59,6 +63,7 @@ const HeroSection = () => {
                             className="bg-gradient-to-r from-teal-400 to-purple-400 text-white border-none
                                 px-16 py-3 rounded-full hover:scale-110 transition-all duration-300
                                 shadow-2xl hover:shadow-3xl flex items-center gap-3 text-lg md:text-xl mx-auto font-bold"
+                            onClick={handleRegisterClick} // Add onClick handler
                         >
                             <Sparkles className="w-6 h-6" />
                             Register for Webinar!

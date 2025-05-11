@@ -1,6 +1,6 @@
 // Header Component
 import { motion } from 'framer-motion';
-import { BrainCircuit } from 'lucide-react';
+// import { BrainCircuit } from 'lucide-react';
 import React from 'react';
 
 const Header = () => {
