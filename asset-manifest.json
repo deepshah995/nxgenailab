@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/nxgenailab.github.io/static/css/main.9f722136.css",
-    "main.js": "/nxgenailab.github.io/static/js/main.662fe218.js",
+    "main.css": "/nxgenailab.github.io/static/css/main.25792194.css",
+    "main.js": "/nxgenailab.github.io/static/js/main.8eda0613.js",
     "index.html": "/nxgenailab.github.io/index.html",
-    "main.9f722136.css.map": "/nxgenailab.github.io/static/css/main.9f722136.css.map",
-    "main.662fe218.js.map": "/nxgenailab.github.io/static/js/main.662fe218.js.map"
+    "main.25792194.css.map": "/nxgenailab.github.io/static/css/main.25792194.css.map",
+    "main.8eda0613.js.map": "/nxgenailab.github.io/static/js/main.8eda0613.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f722136.css",
-    "static/js/main.662fe218.js"
+    "static/css/main.25792194.css",
+    "static/js/main.8eda0613.js"
   ]
 }
