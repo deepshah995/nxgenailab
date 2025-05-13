@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ApplyPage() {
     const [formData, setFormData] = useState({ name: '', email: '' });
@@ -7,31 +9,35 @@ export default function ApplyPage() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-    try {
-        const response = await fetch("http://localhost:3001/submit", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name: "John Doe", email: "john@example.com" }),
-        });
+        try {
+            const response = await fetch("http://localhost:3001/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
 
-        if (response.ok) {
-            const data = await response.json();
-            console.log("Form submitted successfully:", data);
-            alert("Application submitted successfully!");
-        } else {
-            console.error("Error submitting form:", response.statusText);
-            alert("Failed to submit the application. Please try again.");
+            if (response.ok) {
+                const data = await response.json();
+                console.log("%cForm submitted successfully:", "color: green; font-weight: bold;", data);
+                toast.success("🎉 Application submitted successfully!", {
+                    style: { backgroundColor: "#172d67", color: "#ffffff" },
+                    icon: <span role="img" aria-label="check">✅</span>,
+                });
+                setFormData({ name: '', email: '' }); // Clear the form
+            } else {
+                console.error("Error submitting form:", response.statusText);
+                toast.error("🚫 Failed to submit the application. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            toast.error("⚠️ An unexpected error occurred. Please try again.");
         }
-    } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again.");
-    }
-};
+    };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-500 to-teal-400">
@@ -70,6 +76,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                     </button>
                 </form>
             </div>
+
+            {/* Toast Container for notifications */}
+            <ToastContainer position="top-center" autoClose={3000} />
         </div>
     );
 }
